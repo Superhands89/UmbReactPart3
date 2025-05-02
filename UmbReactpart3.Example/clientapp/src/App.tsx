@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css';
 import Menu from './menu';
-import Content from './content';
 import { getPage } from './lib/umbracoFetch';
 import { Page } from './lib/umbracoTypes';
 import { useLocation } from 'react-router';
+import Blocks from './Blocks';
 
 function App() {
     const location = useLocation();
@@ -39,7 +39,7 @@ function App() {
                 <title>{pageData?.seo?.title}</title>
                 <meta name="description" content={pageData?.seo?.description}></meta>
 
-                <Content content={pageData}></Content>
+                <Blocks blocks={pageData?.properties.contentBlocks?.items}></Blocks>
             </>
         }
     </>

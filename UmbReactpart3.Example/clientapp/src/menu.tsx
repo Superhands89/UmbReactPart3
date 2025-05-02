@@ -1,20 +1,20 @@
-﻿import { Link } from "react-router";
+﻿import { NavLink } from "react-router";
 
 function Menu() {
     return <header>
         <nav>
             <ul>
                 <li>
-                    <Link to="/">Home</Link>
+                    <NavLink to="/">Home</NavLink>
                 </li>
                 <li>
-                    <Link to="/about-us">About Us</Link>
+                    <NavLink to="/about-us">About Us</NavLink>
                 </li>
                 <li>
-                    <Link to="/our-work">Our Work</Link>
+                    <NavLink to="/our-work">Our Work</NavLink>
                 </li>
                 <li>
-                    <Link to="/get-in-touch">Get In Touch</Link>
+                    <NavLink to="/get-in-touch">Get In Touch</NavLink>
                 </li>
             </ul>
         </nav>
