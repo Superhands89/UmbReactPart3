@@ -1,38 +1,44 @@
 import { useEffect, useState } from 'react'
 import './App.css';
 import Menu from './menu';
-import { getPage } from './lib/umbracoFetch';
-import { Page } from './lib/umbracoTypes';
+import { getPage, getNavigation } from './lib/umbracoFetch';
+import { Page, NavigationItem } from './lib/umbracoTypes';
 import { useLocation } from 'react-router';
 import Blocks from './Blocks';
 
 function App() {
     const location = useLocation();
     const [pageData, setPageData] = useState<Page | null>(null);
+    const [navigationData, setNavigationData] = useState<NavigationItem[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        const fetchPage = async () => {
+        const fetchData = async () => {
             setLoading(true);
 
             try {
-                const data: Page = await getPage(location.pathname);
+                // Fetch both page and navigation in parallel
+                const [pageResponse, navResponse] = await Promise.all([
+                    getPage(location.pathname),
+                    getNavigation()
+                ]);
 
-                setPageData(data);
+                setPageData(pageResponse);
+                setNavigationData(navResponse || []); // Ensure it's always an array
             } catch (error) {
-                console.error("Failed to fetch page:", error);
+                console.error("Failed to fetch data:", error);
                 setPageData(null);
+                setNavigationData([]); // Set empty array on error
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchPage();
+        fetchData();
     }, [location.pathname]);
 
-
     return <>
-        <Menu></Menu>
+        <Menu menuItems={navigationData} />
         {loading
             ? <div>Loading...</div>
             : <>

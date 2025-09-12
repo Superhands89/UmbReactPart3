@@ -1,21 +1,21 @@
 ﻿import { NavLink } from "react-router";
+import { NavigationItem } from "./lib/umbracoTypes";
 
-function Menu() {
+interface MenuProps {
+    menuItems: NavigationItem[];
+}
+
+function Menu({ menuItems }: MenuProps) {
     return <header>
         <nav>
             <ul>
-                <li>
-                    <NavLink to="/">Home</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/about-us">About Us</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/our-work">Our Work</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/get-in-touch">Get In Touch</NavLink>
-                </li>
+                {menuItems.map((item) => (
+                    <li key={item.id}>
+                        <NavLink to={item.route.path}>
+                            {item.properties.navigationTitle?.toString() || item.name}
+                        </NavLink>
+                    </li>
+                ))}
             </ul>
         </nav>
     </header>

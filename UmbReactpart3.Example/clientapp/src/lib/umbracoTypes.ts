@@ -1,5 +1,12 @@
 ﻿export type Maybe<T> = T | null;
 
+export type NavigationItem = {
+    id: string;
+    name: string;
+    route: UmbracoRoute;
+    properties: { [id: string]: any };
+};
+
 export type Page = {
     id: string;
     title: string;
