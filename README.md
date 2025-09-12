@@ -6,3 +6,6 @@ Example of React and Umbraco working together. part 3 is the most complete part 
 https://www.shoutdigital.com/insights/building-a-react-frontend-for-an-umbraco-headless-cms-part-1/
 https://www.shoutdigital.com/insights/building-a-react-frontend-for-an-umbraco-headless-cms-part-2/
 https://www.shoutdigital.com/insights/building-a-react-frontend-for-an-umbraco-headless-cms-part-3/
+
+Username: admin@example.com
+Password: 1234567890
